@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 import { ChevronDown, ChevronUp, Zap, Activity, TrendingUp, Power, RotateCcw, BatteryCharging } from "lucide-react";
 
 interface EnergyData {
@@ -33,9 +33,9 @@ const EnergyMonitor = () => {
 
   // Mock data для графиков
   const generateChartData = (baseValue: number, variance: number): ChartData[] => {
-    return Array.from({ length: 24 }, (_, i) => ({
-      time: `${String(i).padStart(2, '0')}:00`,
-      value: baseValue + (Math.random() - 0.5) * variance
+    return Array.from({ length: 12 }, (_, i) => ({
+      time: `${String(i + 1).padStart(2, '0')}:00`,
+      value: Math.max(0, baseValue + (Math.random() - 0.5) * variance)
     }));
   };
 
@@ -121,8 +121,17 @@ const EnergyMonitor = () => {
               open={isOpen}
               onOpenChange={() => toggleItem(param.id)}
             >
-              <Card className="transition-all duration-200 hover:shadow-md">
-                <CollapsibleTrigger className="w-full">
+              <Card className="relative overflow-hidden transition-all duration-200 hover:shadow-md">
+                {/* Background mini chart */}
+                <div className="absolute inset-0 opacity-10 pointer-events-none">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={param.data}>
+                      <Bar dataKey="value" fill={param.color} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+                
+                <CollapsibleTrigger className="w-full relative z-10">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-sm font-medium flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -142,36 +151,37 @@ const EnergyMonitor = () => {
                     </div>
                   </CardContent>
                 </CollapsibleTrigger>
-                
-                <CollapsibleContent className="animate-accordion-down">
-                  <CardContent className="pt-0">
-                    <div className="h-32 mt-4">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <LineChart data={param.data}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" />
-                          <XAxis 
-                            dataKey="time" 
-                            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
-                            interval="preserveStartEnd"
-                          />
-                          <YAxis 
-                            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
-                            width={40}
-                          />
-                          <Line 
-                            type="monotone" 
-                            dataKey="value" 
-                            stroke={param.color}
-                            strokeWidth={2}
-                            dot={false}
-                            activeDot={{ r: 4, fill: param.color }}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
-                  </CardContent>
-                </CollapsibleContent>
               </Card>
+              
+              {/* Expanded chart */}
+              {isOpen && (
+                <CollapsibleContent className="animate-accordion-down">
+                  <Card className="mt-4 w-full">
+                    <CardContent className="p-6">
+                      <div className="h-64">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={param.data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" />
+                            <XAxis 
+                              dataKey="time" 
+                              tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                            />
+                            <YAxis 
+                              tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                              width={50}
+                            />
+                            <Bar 
+                              dataKey="value" 
+                              fill={param.color}
+                              radius={[2, 2, 0, 0]}
+                            />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CollapsibleContent>
+              )}
             </Collapsible>
           );
         })}
