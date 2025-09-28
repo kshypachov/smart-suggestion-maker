@@ -19,7 +19,7 @@ interface ChartData {
 }
 
 const EnergyMonitor = () => {
-  const [openItems, setOpenItems] = useState<string[]>([]);
+  const [openItem, setOpenItem] = useState<string | null>(null);
   
   // Mock data для текущих значений
   const currentData: EnergyData = {
@@ -100,14 +100,10 @@ const EnergyMonitor = () => {
   ];
 
   const toggleItem = (itemId: string) => {
-    setOpenItems(prev => 
-      prev.includes(itemId) 
-        ? prev.filter(id => id !== itemId)
-        : [...prev, itemId]
-    );
+    setOpenItem(prev => prev === itemId ? null : itemId);
   };
 
-  const openParam = energyParams.find(param => openItems.includes(param.id));
+  const openParam = energyParams.find(param => param.id === openItem);
 
   return (
     <div className="space-y-4">
@@ -115,12 +111,14 @@ const EnergyMonitor = () => {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {energyParams.map((param) => {
           const Icon = param.icon;
-          const isOpen = openItems.includes(param.id);
+          const isOpen = openItem === param.id;
           
           return (
             <Card 
               key={param.id}
-              className="relative overflow-hidden transition-all duration-200 hover:shadow-md cursor-pointer"
+              className={`relative overflow-hidden transition-all duration-200 hover:shadow-md cursor-pointer ${
+                isOpen ? 'ring-2 ring-primary shadow-lg' : ''
+              }`}
               onClick={() => toggleItem(param.id)}
             >
               {/* Background mini chart */}
@@ -157,7 +155,7 @@ const EnergyMonitor = () => {
       
       {/* Full-width expanded chart */}
       {openParam && (
-        <div className="animate-fade-in">
+        <div key={openParam.id} className="animate-fade-in">
           <Card className="w-full">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
