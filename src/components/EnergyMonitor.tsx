@@ -107,6 +107,8 @@ const EnergyMonitor = () => {
     );
   };
 
+  const openParam = energyParams.find(param => openItems.includes(param.id));
+
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-semibold text-foreground mb-4">Энергомониторинг</h2>
@@ -116,76 +118,78 @@ const EnergyMonitor = () => {
           const isOpen = openItems.includes(param.id);
           
           return (
-            <Collapsible
+            <Card 
               key={param.id}
-              open={isOpen}
-              onOpenChange={() => toggleItem(param.id)}
+              className="relative overflow-hidden transition-all duration-200 hover:shadow-md cursor-pointer"
+              onClick={() => toggleItem(param.id)}
             >
-              <Card className="relative overflow-hidden transition-all duration-200 hover:shadow-md">
-                {/* Background mini chart */}
-                <div className="absolute inset-0 opacity-10 pointer-events-none">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={param.data}>
-                      <Bar dataKey="value" fill={param.color} />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-                
-                <CollapsibleTrigger className="w-full relative z-10">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-medium flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Icon className="h-4 w-4" style={{ color: param.color }} />
-                        {param.title}
-                      </div>
-                      {isOpen ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="text-2xl font-bold text-foreground">
-                      {param.value}
-                    </div>
-                  </CardContent>
-                </CollapsibleTrigger>
-              </Card>
+              {/* Background mini chart */}
+              <div className="absolute inset-0 opacity-10 pointer-events-none">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={param.data}>
+                    <Bar dataKey="value" fill={param.color} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
               
-              {/* Expanded chart */}
-              {isOpen && (
-                <CollapsibleContent className="animate-accordion-down">
-                  <Card className="mt-4 w-full">
-                    <CardContent className="p-6">
-                      <div className="h-64">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart data={param.data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" />
-                            <XAxis 
-                              dataKey="time" 
-                              tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
-                            />
-                            <YAxis 
-                              tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
-                              width={50}
-                            />
-                            <Bar 
-                              dataKey="value" 
-                              fill={param.color}
-                              radius={[2, 2, 0, 0]}
-                            />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </CollapsibleContent>
-              )}
-            </Collapsible>
+              <CardHeader className="pb-3 relative z-10">
+                <CardTitle className="text-sm font-medium flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Icon className="h-4 w-4" style={{ color: param.color }} />
+                    {param.title}
+                  </div>
+                  {isOpen ? (
+                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  )}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0 relative z-10">
+                <div className="text-2xl font-bold text-foreground">
+                  {param.value}
+                </div>
+              </CardContent>
+            </Card>
           );
         })}
       </div>
+      
+      {/* Full-width expanded chart */}
+      {openParam && (
+        <div className="animate-fade-in">
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <openParam.icon className="h-5 w-5" style={{ color: openParam.color }} />
+                {openParam.title} - Детальный график
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={openParam.data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" />
+                    <XAxis 
+                      dataKey="time" 
+                      tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                    />
+                    <YAxis 
+                      tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                      width={50}
+                    />
+                    <Bar 
+                      dataKey="value" 
+                      fill={openParam.color}
+                      radius={[2, 2, 0, 0]}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };
