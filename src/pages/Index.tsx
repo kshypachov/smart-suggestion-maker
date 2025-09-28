@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import RelayCard from "@/components/RelayCard";
+import EnergyMonitor from "@/components/EnergyMonitor";
 import { Settings, Wifi, WifiOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -116,6 +117,9 @@ const Index = () => {
             ))}
           </div>
         </div>
+
+        {/* Energy Monitoring */}
+        <EnergyMonitor />
 
         {/* Device Info */}
         <Card>
