@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 import { ChevronDown, ChevronUp, Zap, Activity, TrendingUp, Power, RotateCcw, BatteryCharging } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface EnergyData {
   voltage: number;
@@ -19,6 +20,7 @@ interface ChartData {
 }
 
 const EnergyMonitor = () => {
+  const { t } = useLanguage();
   const [openItem, setOpenItem] = useState<string | null>(null);
   
   // Mock data для текущих значений
@@ -39,6 +41,21 @@ const EnergyMonitor = () => {
     }));
   };
 
+  // Функция для вычисления масштабированного домена
+  const getScaleDomain = (data: ChartData[]): [number, number] => {
+    const values = data.map(d => d.value);
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const avg = values.reduce((sum, val) => sum + val, 0) / values.length;
+    
+    // Вычисляем диапазон так, чтобы среднее значение было по центру
+    const maxDeviation = Math.max(max - avg, avg - min);
+    const domainMin = Math.max(0, avg - maxDeviation * 1.2);
+    const domainMax = avg + maxDeviation * 1.2;
+    
+    return [domainMin, domainMax];
+  };
+
   const chartData = {
     voltage: generateChartData(230, 10),
     current: generateChartData(2.3, 0.5),
@@ -51,23 +68,23 @@ const EnergyMonitor = () => {
   const energyParams = [
     {
       id: "voltage",
-      title: "Напряжение сети",
-      value: `${currentData.voltage.toFixed(1)} В`,
+      title: t('voltage'),
+      value: `${currentData.voltage.toFixed(1)} ${t('volts')}`,
       icon: Zap,
       color: "hsl(var(--chart-1))",
       data: chartData.voltage
     },
     {
       id: "current",
-      title: "Сила тока",
-      value: `${currentData.current.toFixed(2)} А`,
+      title: t('current'),
+      value: `${currentData.current.toFixed(2)} ${t('amperes')}`,
       icon: Activity,
       color: "hsl(var(--chart-2))",
       data: chartData.current
     },
     {
       id: "powerFactor",
-      title: "Коэффициент мощности",
+      title: t('power_factor'),
       value: `${currentData.powerFactor.toFixed(2)}`,
       icon: TrendingUp,
       color: "hsl(var(--chart-3))",
@@ -75,24 +92,24 @@ const EnergyMonitor = () => {
     },
     {
       id: "activePower",
-      title: "Активная мощность",
-      value: `${currentData.activePower.toFixed(1)} Вт`,
+      title: t('active_power'),
+      value: `${currentData.activePower.toFixed(1)} ${t('watts')}`,
       icon: Power,
       color: "hsl(var(--chart-4))",
       data: chartData.activePower
     },
     {
       id: "reactivePower",
-      title: "Реактивная мощность",
-      value: `${currentData.reactivePower.toFixed(1)} ВАР`,
+      title: t('reactive_power'),
+      value: `${currentData.reactivePower.toFixed(1)} ${t('vars')}`,
       icon: RotateCcw,
       color: "hsl(var(--chart-5))",
       data: chartData.reactivePower
     },
     {
       id: "accumulatedEnergy",
-      title: "Накопленная энергия",
-      value: `${currentData.accumulatedEnergy.toFixed(1)} кВт·ч`,
+      title: t('accumulated_energy'),
+      value: `${currentData.accumulatedEnergy.toFixed(1)} ${t('kwh')}`,
       icon: BatteryCharging,
       color: "hsl(var(--primary))",
       data: chartData.accumulatedEnergy
@@ -107,7 +124,7 @@ const EnergyMonitor = () => {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold text-foreground mb-4">Энергомониторинг</h2>
+      <h2 className="text-xl font-semibold text-foreground mb-4">{t('energy_monitoring')}</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {energyParams.map((param) => {
           const Icon = param.icon;
@@ -125,6 +142,7 @@ const EnergyMonitor = () => {
               <div className="absolute inset-0 opacity-10 pointer-events-none">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={param.data}>
+                    <YAxis domain={getScaleDomain(param.data)} hide />
                     <Bar dataKey="value" fill={param.color} />
                   </BarChart>
                 </ResponsiveContainer>
@@ -160,7 +178,7 @@ const EnergyMonitor = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <openParam.icon className="h-5 w-5" style={{ color: openParam.color }} />
-                {openParam.title} - Детальный график
+                {openParam.title} - {t('detailed_chart')}
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
