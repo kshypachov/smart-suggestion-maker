@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import RelayCard from "@/components/RelayCard";
 import EnergyMonitor from "@/components/EnergyMonitor";
 import { Settings, Wifi, WifiOff, LogOut, Languages } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
 
@@ -18,6 +18,7 @@ interface RelayState {
 const Index = () => {
   const { toast } = useToast();
   const { t, language, setLanguage } = useLanguage();
+  const navigate = useNavigate();
   const [mqttConnected, setMqttConnected] = useState(true);
   const [relays, setRelays] = useState<RelayState[]>([
     { id: 1, name: `${t('relay')} 1`, isActive: false },
@@ -43,7 +44,7 @@ const Index = () => {
       title: t('logout'),
       description: t('command_sent'),
     });
-    // Здесь можно добавить логику выхода из системы
+    navigate('/login');
   };
 
   const toggleLanguage = () => {

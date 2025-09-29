@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -18,6 +19,8 @@ const mqttSchema = z.object({
   port: z.number().min(1, "Port must be positive").max(65535, "Invalid port"),
   username: z.string(),
   password: z.string(),
+  tlsEnabled: z.boolean(),
+  certValidationEnabled: z.boolean(),
 });
 
 const safetySchema = z.object({
@@ -29,6 +32,7 @@ const safetySchema = z.object({
 
 const Settings = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   
   const mqttForm = useForm<z.infer<typeof mqttSchema>>({
     resolver: zodResolver(mqttSchema),
@@ -38,6 +42,8 @@ const Settings = () => {
       port: 1883,
       username: "",
       password: "",
+      tlsEnabled: false,
+      certValidationEnabled: true,
     },
   });
 
@@ -54,16 +60,16 @@ const Settings = () => {
   const onMqttSubmit = (values: z.infer<typeof mqttSchema>) => {
     console.log("MQTT settings:", values);
     toast({
-      title: "MQTT настройки сохранены",
-      description: "Настройки подключения к MQTT серверу обновлены",
+      title: t('mqtt_settings_saved'),
+      description: t('mqtt_settings_updated'),
     });
   };
 
   const onSafetySubmit = (values: z.infer<typeof safetySchema>) => {
     console.log("Safety settings:", values);
     toast({
-      title: "Настройки безопасности сохранены",
-      description: "Безопасные состояния реле обновлены",
+      title: t('safety_settings_saved'),
+      description: t('safety_settings_updated'),
     });
   };
 
@@ -76,7 +82,7 @@ const Settings = () => {
               <ArrowLeft className="h-4 w-4" />
             </Button>
           </Link>
-          <h1 className="text-3xl font-bold text-foreground">Настройки</h1>
+          <h1 className="text-3xl font-bold text-foreground">{t('settings')}</h1>
         </div>
 
         <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
@@ -85,7 +91,7 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-info"></div>
-                Настройки MQTT
+                {t('mqtt_settings')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -96,7 +102,7 @@ const Settings = () => {
                     name="enabled"
                     render={({ field }) => (
                       <FormItem className="flex items-center justify-between">
-                        <FormLabel>Включить MQTT</FormLabel>
+                        <FormLabel>{t('enable_mqtt')}</FormLabel>
                         <FormControl>
                           <Switch
                             checked={field.value}
@@ -112,7 +118,7 @@ const Settings = () => {
                     name="hostname"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Имя хоста</FormLabel>
+                        <FormLabel>{t('hostname')}</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="localhost" 
@@ -130,7 +136,7 @@ const Settings = () => {
                     name="port"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Порт</FormLabel>
+                        <FormLabel>{t('port')}</FormLabel>
                         <FormControl>
                           <Input 
                             type="number" 
@@ -150,7 +156,7 @@ const Settings = () => {
                     name="username"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Логин пользователя</FormLabel>
+                        <FormLabel>{t('username')}</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="username" 
@@ -168,7 +174,7 @@ const Settings = () => {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Пароль</FormLabel>
+                        <FormLabel>{t('password')}</FormLabel>
                         <FormControl>
                           <Input 
                             type="password" 
@@ -182,8 +188,42 @@ const Settings = () => {
                     )}
                   />
 
+                  <FormField
+                    control={mqttForm.control}
+                    name="tlsEnabled"
+                    render={({ field }) => (
+                      <FormItem className="flex items-center justify-between">
+                        <FormLabel>{t('enable_tls')}</FormLabel>
+                        <FormControl>
+                          <Switch
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            disabled={!mqttForm.watch("enabled")}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={mqttForm.control}
+                    name="certValidationEnabled"
+                    render={({ field }) => (
+                      <FormItem className="flex items-center justify-between">
+                        <FormLabel>{t('enable_cert_validation')}</FormLabel>
+                        <FormControl>
+                          <Switch
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            disabled={!mqttForm.watch("enabled") || !mqttForm.watch("tlsEnabled")}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+
                   <Button type="submit" className="w-full">
-                    Сохранить MQTT настройки
+                    {t('save_mqtt_settings')}
                   </Button>
                 </form>
               </Form>
@@ -195,7 +235,7 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-warning"></div>
-                Безопасное состояние реле
+                {t('safety_settings')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -206,7 +246,7 @@ const Settings = () => {
                     name="enabled"
                     render={({ field }) => (
                       <FormItem className="flex items-center justify-between">
-                        <FormLabel>Включить функцию</FormLabel>
+                        <FormLabel>{t('enable_function')}</FormLabel>
                         <FormControl>
                           <Switch
                             checked={field.value}
@@ -218,14 +258,14 @@ const Settings = () => {
                   />
 
                   <div className="space-y-3">
-                    <Label className="text-sm font-medium">Дефолтные состояния реле:</Label>
+                    <Label className="text-sm font-medium">{t('default_relay_states')}:</Label>
                     
                     <FormField
                       control={safetyForm.control}
                       name="relay1Default"
                       render={({ field }) => (
                         <FormItem className="flex items-center justify-between">
-                          <FormLabel>Реле 1</FormLabel>
+                          <FormLabel>{t('relay')} 1</FormLabel>
                           <FormControl>
                             <Switch
                               checked={field.value}
@@ -242,7 +282,7 @@ const Settings = () => {
                       name="relay2Default"
                       render={({ field }) => (
                         <FormItem className="flex items-center justify-between">
-                          <FormLabel>Реле 2</FormLabel>
+                          <FormLabel>{t('relay')} 2</FormLabel>
                           <FormControl>
                             <Switch
                               checked={field.value}
@@ -259,7 +299,7 @@ const Settings = () => {
                       name="relay3Default"
                       render={({ field }) => (
                         <FormItem className="flex items-center justify-between">
-                          <FormLabel>Реле 3</FormLabel>
+                          <FormLabel>{t('relay')} 3</FormLabel>
                           <FormControl>
                             <Switch
                               checked={field.value}
@@ -273,7 +313,7 @@ const Settings = () => {
                   </div>
 
                   <Button type="submit" className="w-full">
-                    Сохранить настройки безопасности
+                    {t('save_safety_settings')}
                   </Button>
                 </form>
               </Form>

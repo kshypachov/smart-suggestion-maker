@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, ReactNode } from 'react';
+import { useState, createContext, useContext, ReactNode, useEffect } from 'react';
 
 type Language = 'ru' | 'en';
 
@@ -15,6 +15,25 @@ const translations = {
     'device_control': 'Управление embedded устройством',
     'settings': 'Настройки',
     'logout': 'Выход',
+    
+    // Settings page
+    'mqtt_settings': 'Настройки MQTT',
+    'safety_settings': 'Безопасное состояние реле',
+    'enable_mqtt': 'Включить MQTT',
+    'hostname': 'Имя хоста',
+    'port': 'Порт',
+    'username': 'Логин пользователя',
+    'password': 'Пароль',
+    'enable_tls': 'Включить TLS',
+    'enable_cert_validation': 'Валидация сертификата сервера',
+    'enable_function': 'Включить функцию',
+    'default_relay_states': 'Дефолтные состояния реле',
+    'save_mqtt_settings': 'Сохранить MQTT настройки',
+    'save_safety_settings': 'Сохранить настройки безопасности',
+    'mqtt_settings_saved': 'MQTT настройки сохранены',
+    'mqtt_settings_updated': 'Настройки подключения к MQTT серверу обновлены',
+    'safety_settings_saved': 'Настройки безопасности сохранены',
+    'safety_settings_updated': 'Безопасные состояния реле обновлены',
     
     // Status
     'mqtt_connection': 'MQTT Соединение',
@@ -66,6 +85,25 @@ const translations = {
     'device_control': 'Embedded device control',
     'settings': 'Settings',
     'logout': 'Logout',
+    
+    // Settings page
+    'mqtt_settings': 'MQTT Settings',
+    'safety_settings': 'Safety Relay States',
+    'enable_mqtt': 'Enable MQTT',
+    'hostname': 'Hostname',
+    'port': 'Port',
+    'username': 'Username',
+    'password': 'Password',
+    'enable_tls': 'Enable TLS',
+    'enable_cert_validation': 'Server Certificate Validation',
+    'enable_function': 'Enable Function',
+    'default_relay_states': 'Default Relay States',
+    'save_mqtt_settings': 'Save MQTT Settings',
+    'save_safety_settings': 'Save Safety Settings',
+    'mqtt_settings_saved': 'MQTT Settings Saved',
+    'mqtt_settings_updated': 'MQTT server connection settings updated',
+    'safety_settings_saved': 'Safety Settings Saved',
+    'safety_settings_updated': 'Safe relay states updated',
     
     // Status
     'mqtt_connection': 'MQTT Connection',
@@ -128,7 +166,14 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [language, setLanguage] = useState<Language>('ru');
+  const [language, setLanguage] = useState<Language>(() => {
+    const savedLanguage = localStorage.getItem('language');
+    return (savedLanguage as Language) || 'ru';
+  });
+  
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
   
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations['ru']] || key;
