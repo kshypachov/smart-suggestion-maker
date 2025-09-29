@@ -4,10 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import RelayCard from "@/components/RelayCard";
 import EnergyMonitor from "@/components/EnergyMonitor";
-import { Settings, Wifi, WifiOff, LogOut, Languages } from "lucide-react";
+import { Settings, Wifi, WifiOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { useLanguage } from "@/hooks/useLanguage";
 
 interface RelayState {
   id: number;
@@ -17,12 +16,11 @@ interface RelayState {
 
 const Index = () => {
   const { toast } = useToast();
-  const { t, language, setLanguage } = useLanguage();
   const [mqttConnected, setMqttConnected] = useState(true);
   const [relays, setRelays] = useState<RelayState[]>([
-    { id: 1, name: `${t('relay')} 1`, isActive: false },
-    { id: 2, name: `${t('relay')} 2`, isActive: true },
-    { id: 3, name: `${t('relay')} 3`, isActive: false },
+    { id: 1, name: "Реле 1", isActive: false },
+    { id: 2, name: "Реле 2", isActive: true },
+    { id: 3, name: "Реле 3", isActive: false },
   ]);
 
   const handleRelayToggle = (id: number, state: boolean) => {
@@ -31,24 +29,12 @@ const Index = () => {
     ));
     
     toast({
-      title: `${t('relay')} ${id} ${state ? t('turned_on') : t('turned_off')}`,
-      description: t('command_sent'),
+      title: `Реле ${id} ${state ? 'включено' : 'выключено'}`,
+      description: `Команда отправлена на устройство`,
     });
   };
 
   const activeCount = relays.filter(relay => relay.isActive).length;
-
-  const handleLogout = () => {
-    toast({
-      title: t('logout'),
-      description: t('command_sent'),
-    });
-    // Здесь можно добавить логику выхода из системы
-  };
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'ru' ? 'en' : 'ru');
-  };
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -56,25 +42,15 @@ const Index = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">{t('dashboard')}</h1>
-            <p className="text-muted-foreground mt-1">{t('device_control')}</p>
+            <h1 className="text-3xl font-bold text-foreground">Панель управления</h1>
+            <p className="text-muted-foreground mt-1">Управление embedded устройством</p>
           </div>
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="lg" className="gap-2" onClick={toggleLanguage}>
-              <Languages className="h-4 w-4" />
-              {language.toUpperCase()}
+          <Link to="/settings">
+            <Button variant="outline" size="lg" className="gap-2">
+              <Settings className="h-4 w-4" />
+              Настройки
             </Button>
-            <Link to="/settings">
-              <Button variant="outline" size="lg" className="gap-2">
-                <Settings className="h-4 w-4" />
-                {t('settings')}
-              </Button>
-            </Link>
-            <Button variant="outline" size="lg" className="gap-2" onClick={handleLogout}>
-              <LogOut className="h-4 w-4" />
-              {t('logout')}
-            </Button>
-          </div>
+          </Link>
         </div>
 
         {/* Status Cards */}
@@ -85,12 +61,12 @@ const Index = () => {
                 {mqttConnected ? (
                   <>
                     <Wifi className="h-4 w-4 text-success" />
-                    {t('mqtt_connection')}
+                    MQTT Соединение
                   </>
                 ) : (
                   <>
                     <WifiOff className="h-4 w-4 text-destructive" />
-                    {t('mqtt_connection')}
+                    MQTT Соединение
                   </>
                 )}
               </CardTitle>
@@ -99,28 +75,28 @@ const Index = () => {
               <Badge variant={mqttConnected ? "default" : "destructive"} className={
                 mqttConnected ? "bg-success text-success-foreground" : ""
               }>
-                {mqttConnected ? t('connected') : t('disconnected')}
+                {mqttConnected ? "Подключено" : "Отключено"}
               </Badge>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium">{t('active_relays')}</CardTitle>
+              <CardTitle className="text-sm font-medium">Активные реле</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
               <div className="text-2xl font-bold text-foreground">{activeCount}</div>
-              <p className="text-xs text-muted-foreground">{t('of')} {relays.length} {t('relays')}</p>
+              <p className="text-xs text-muted-foreground">из {relays.length} реле</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium">{t('system_status')}</CardTitle>
+              <CardTitle className="text-sm font-medium">Состояние системы</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
               <Badge variant="default" className="bg-success text-success-foreground">
-                {t('ready')}
+                Готова к работе
               </Badge>
             </CardContent>
           </Card>
@@ -128,7 +104,7 @@ const Index = () => {
 
         {/* Relay Controls */}
         <div>
-          <h2 className="text-xl font-semibold text-foreground mb-4">{t('relay_control')}</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-4">Управление реле</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {relays.map((relay) => (
               <RelayCard
@@ -148,24 +124,24 @@ const Index = () => {
         {/* Device Info */}
         <Card>
           <CardHeader>
-            <CardTitle>{t('device_info')}</CardTitle>
+            <CardTitle>Информация об устройстве</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-2">
               <div>
-                <h4 className="font-medium text-sm text-muted-foreground">{t('firmware_version')}</h4>
+                <h4 className="font-medium text-sm text-muted-foreground">Версия прошивки</h4>
                 <p className="text-foreground">v1.2.3</p>
               </div>
               <div>
-                <h4 className="font-medium text-sm text-muted-foreground">{t('uptime')}</h4>
-                <p className="text-foreground">2{t('days')} 14{t('hours')} 32{t('minutes')}</p>
+                <h4 className="font-medium text-sm text-muted-foreground">Время работы</h4>
+                <p className="text-foreground">2д 14ч 32м</p>
               </div>
               <div>
-                <h4 className="font-medium text-sm text-muted-foreground">{t('ip_address')}</h4>
+                <h4 className="font-medium text-sm text-muted-foreground">IP адрес</h4>
                 <p className="text-foreground">192.168.1.100</p>
               </div>
               <div>
-                <h4 className="font-medium text-sm text-muted-foreground">{t('mac_address')}</h4>
+                <h4 className="font-medium text-sm text-muted-foreground">MAC адрес</h4>
                 <p className="text-foreground">AA:BB:CC:DD:EE:FF</p>
               </div>
             </div>
