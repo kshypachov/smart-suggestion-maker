@@ -10,14 +10,11 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
 import { Lock, User, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
-import AnimatedBackground from "@/components/AnimatedBackground";
 
 const Login = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
-  const [focusedField, setFocusedField] = useState<'username' | 'password' | null>(null);
-  const [hasError, setHasError] = useState(false);
   
   const loginSchema = z.object({
     username: z.string().min(1, t('login_username_required')).max(50, t('login_username_max')),
@@ -34,22 +31,10 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     setIsLoading(true);
-    setHasError(false);
     
     // Имитация отправки данных на устройство
     setTimeout(() => {
       console.log("Login attempt:", values);
-      
-      // Симуляция ошибки для демонстрации (удалите в продакшене)
-      const simulateError = Math.random() > 0.7;
-      
-      if (simulateError) {
-        setHasError(true);
-        form.setError("password", { message: t('login_password_error') });
-        setIsLoading(false);
-        return;
-      }
-      
       toast({
         title: t('login_toast_title'),
         description: t('login_toast_description'),
@@ -59,9 +44,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-6 relative">
-      <AnimatedBackground onFocus={focusedField} hasError={hasError} />
-      <div className="w-full max-w-md space-y-6 animate-fade-in relative z-10">
+    <div className="min-h-screen bg-background flex items-center justify-center p-6">
+      <div className="w-full max-w-md space-y-6 animate-fade-in">
         {/* Header Card */}
         <Card className="animate-scale-in">
           <CardHeader className="text-center pb-2">
@@ -103,8 +87,6 @@ const Login = () => {
                           {...field}
                           className="transition-all duration-300 focus:scale-[1.02]"
                           disabled={isLoading}
-                          onFocus={() => setFocusedField('username')}
-                          onBlur={() => setFocusedField(null)}
                         />
                       </FormControl>
                       <FormMessage />
@@ -128,8 +110,6 @@ const Login = () => {
                           {...field}
                           className="transition-all duration-300 focus:scale-[1.02]"
                           disabled={isLoading}
-                          onFocus={() => setFocusedField('password')}
-                          onBlur={() => setFocusedField(null)}
                         />
                       </FormControl>
                       <FormMessage />

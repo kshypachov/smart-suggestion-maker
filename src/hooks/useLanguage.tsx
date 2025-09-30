@@ -102,8 +102,7 @@ const translations = {
     'login_username_required': 'Логин обязателен',
     'login_username_max': 'Логин не может быть длиннее 50 символов',
     'login_password_min': 'Пароль должен содержать минимум 4 символа',
-    'login_password_max': 'Пароль слишком длинный',
-    'login_password_error': 'Неверные учетные данные. Попробуйте снова.'
+    'login_password_max': 'Пароль слишком длинный'
   },
   en: {
     // Header
@@ -198,8 +197,7 @@ const translations = {
     'login_username_required': 'Username is required',
     'login_username_max': 'Username cannot be longer than 50 characters',
     'login_password_min': 'Password must contain at least 4 characters',
-    'login_password_max': 'Password is too long',
-    'login_password_error': 'Invalid credentials. Please try again.'
+    'login_password_max': 'Password is too long'
   }
 };
 
