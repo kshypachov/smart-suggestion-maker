@@ -83,7 +83,26 @@ const translations = {
     'relays': 'реле',
     'days': 'д',
     'hours': 'ч',
-    'minutes': 'м'
+    'minutes': 'м',
+    
+    // Login page
+    'login_title': 'Авторизация',
+    'login_subtitle': 'Вход в панель управления embedded устройством',
+    'login_form_title': 'Данные для входа',
+    'login_username': 'Логин',
+    'login_username_placeholder': 'Введите логин',
+    'login_password': 'Пароль',
+    'login_password_placeholder': 'Введите пароль',
+    'login_button': 'Войти в систему',
+    'login_checking': 'Проверка...',
+    'login_device_ready': 'Устройство готово к авторизации',
+    'login_back_home': 'Вернуться на главную',
+    'login_toast_title': 'Авторизация',
+    'login_toast_description': 'Данные отправлены на устройство для проверки',
+    'login_username_required': 'Логин обязателен',
+    'login_username_max': 'Логин не может быть длиннее 50 символов',
+    'login_password_min': 'Пароль должен содержать минимум 4 символа',
+    'login_password_max': 'Пароль слишком длинный'
   },
   en: {
     // Header
@@ -159,7 +178,26 @@ const translations = {
     'relays': 'relays',
     'days': 'd',
     'hours': 'h',
-    'minutes': 'm'
+    'minutes': 'm',
+    
+    // Login page
+    'login_title': 'Authorization',
+    'login_subtitle': 'Login to embedded device control panel',
+    'login_form_title': 'Login credentials',
+    'login_username': 'Username',
+    'login_username_placeholder': 'Enter username',
+    'login_password': 'Password',
+    'login_password_placeholder': 'Enter password',
+    'login_button': 'Log in',
+    'login_checking': 'Checking...',
+    'login_device_ready': 'Device ready for authorization',
+    'login_back_home': 'Back to home',
+    'login_toast_title': 'Authorization',
+    'login_toast_description': 'Credentials sent to device for verification',
+    'login_username_required': 'Username is required',
+    'login_username_max': 'Username cannot be longer than 50 characters',
+    'login_password_min': 'Password must contain at least 4 characters',
+    'login_password_max': 'Password is too long'
   }
 };
 

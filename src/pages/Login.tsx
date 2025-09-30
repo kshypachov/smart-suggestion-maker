@@ -7,17 +7,19 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 import { Lock, User, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const loginSchema = z.object({
-  username: z.string().min(1, "Логин обязателен").max(50, "Логин не может быть длиннее 50 символов"),
-  password: z.string().min(4, "Пароль должен содержать минимум 4 символа").max(100, "Пароль слишком длинный"),
-});
-
 const Login = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
+  
+  const loginSchema = z.object({
+    username: z.string().min(1, t('login_username_required')).max(50, t('login_username_max')),
+    password: z.string().min(4, t('login_password_min')).max(100, t('login_password_max')),
+  });
   
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -34,8 +36,8 @@ const Login = () => {
     setTimeout(() => {
       console.log("Login attempt:", values);
       toast({
-        title: "Авторизация",
-        description: "Данные отправлены на устройство для проверки",
+        title: t('login_toast_title'),
+        description: t('login_toast_description'),
       });
       setIsLoading(false);
     }, 1500);
@@ -51,10 +53,10 @@ const Login = () => {
               <Shield className="h-6 w-6 text-primary" />
             </div>
             <CardTitle className="text-2xl font-bold text-foreground animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              Авторизация
+              {t('login_title')}
             </CardTitle>
             <p className="text-muted-foreground animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              Вход в панель управления embedded устройством
+              {t('login_subtitle')}
             </p>
           </CardHeader>
         </Card>
@@ -64,7 +66,7 @@ const Login = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary"></div>
-              Данные для входа
+              {t('login_form_title')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -77,11 +79,11 @@ const Login = () => {
                     <FormItem className="animate-fade-in" style={{ animationDelay: "0.4s" }}>
                       <FormLabel className="flex items-center gap-2">
                         <User className="h-4 w-4" />
-                        Логин
+                        {t('login_username')}
                       </FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="Введите логин" 
+                          placeholder={t('login_username_placeholder')} 
                           {...field}
                           className="transition-all duration-300 focus:scale-[1.02]"
                           disabled={isLoading}
@@ -99,12 +101,12 @@ const Login = () => {
                     <FormItem className="animate-fade-in" style={{ animationDelay: "0.5s" }}>
                       <FormLabel className="flex items-center gap-2">
                         <Lock className="h-4 w-4" />
-                        Пароль
+                        {t('login_password')}
                       </FormLabel>
                       <FormControl>
                         <Input 
                           type="password" 
-                          placeholder="Введите пароль" 
+                          placeholder={t('login_password_placeholder')} 
                           {...field}
                           className="transition-all duration-300 focus:scale-[1.02]"
                           disabled={isLoading}
@@ -124,10 +126,10 @@ const Login = () => {
                   {isLoading ? (
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                      Проверка...
+                      {t('login_checking')}
                     </div>
                   ) : (
-                    "Войти в систему"
+                    t('login_button')
                   )}
                 </Button>
               </form>
@@ -141,14 +143,14 @@ const Login = () => {
             <div className="text-center space-y-2">
               <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: "0.7s" }}>
                 <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
-                Устройство готово к авторизации
+                {t('login_device_ready')}
               </div>
               <Link 
                 to="/" 
                 className="text-sm text-primary hover:underline story-link animate-fade-in inline-block" 
                 style={{ animationDelay: "0.8s" }}
               >
-                Вернуться на главную
+                {t('login_back_home')}
               </Link>
             </div>
           </CardContent>
