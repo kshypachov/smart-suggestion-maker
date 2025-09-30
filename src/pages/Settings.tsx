@@ -28,6 +28,7 @@ const safetySchema = z.object({
   relay1Default: z.boolean(),
   relay2Default: z.boolean(),
   relay3Default: z.boolean(),
+  relay4Default: z.boolean(),
 });
 
 const Settings = () => {
@@ -54,6 +55,7 @@ const Settings = () => {
       relay1Default: false,
       relay2Default: false,
       relay3Default: false,
+      relay4Default: false,
     },
   });
 
@@ -300,6 +302,23 @@ const Settings = () => {
                       render={({ field }) => (
                         <FormItem className="flex items-center justify-between">
                           <FormLabel>{t('relay')} 3</FormLabel>
+                          <FormControl>
+                            <Switch
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                              disabled={!safetyForm.watch("enabled")}
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={safetyForm.control}
+                      name="relay4Default"
+                      render={({ field }) => (
+                        <FormItem className="flex items-center justify-between">
+                          <FormLabel>{t('relay')} 4</FormLabel>
                           <FormControl>
                             <Switch
                               checked={field.value}
