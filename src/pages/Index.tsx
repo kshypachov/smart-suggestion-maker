@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import RelayCard from "@/components/RelayCard";
+import DigitalInputCard from "@/components/DigitalInputCard";
 import EnergyMonitor from "@/components/EnergyMonitor";
 import { Settings, Wifi, WifiOff, LogOut, Languages } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,6 +11,12 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
 
 interface RelayState {
+  id: number;
+  name: string;
+  isActive: boolean;
+}
+
+interface DigitalInputState {
   id: number;
   name: string;
   isActive: boolean;
@@ -24,6 +31,13 @@ const Index = () => {
     { id: 1, name: `${t('relay')} 1`, isActive: false },
     { id: 2, name: `${t('relay')} 2`, isActive: true },
     { id: 3, name: `${t('relay')} 3`, isActive: false },
+    { id: 4, name: `${t('relay')} 4`, isActive: false },
+  ]);
+
+  const [digitalInputs] = useState<DigitalInputState[]>([
+    { id: 1, name: `${t('digital_input')} 1`, isActive: true },
+    { id: 2, name: `${t('digital_input')} 2`, isActive: false },
+    { id: 3, name: `${t('digital_input')} 3`, isActive: true },
   ]);
 
   const handleRelayToggle = (id: number, state: boolean) => {
@@ -130,7 +144,7 @@ const Index = () => {
         {/* Relay Controls */}
         <div>
           <h2 className="text-xl font-semibold text-foreground mb-4">{t('relay_control')}</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {relays.map((relay) => (
               <RelayCard
                 key={relay.id}
@@ -138,6 +152,21 @@ const Index = () => {
                 name={relay.name}
                 isActive={relay.isActive}
                 onToggle={handleRelayToggle}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Digital Inputs */}
+        <div>
+          <h2 className="text-xl font-semibold text-foreground mb-4">{t('digital_inputs')}</h2>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {digitalInputs.map((input) => (
+              <DigitalInputCard
+                key={input.id}
+                id={input.id}
+                name={input.name}
+                isActive={input.isActive}
               />
             ))}
           </div>

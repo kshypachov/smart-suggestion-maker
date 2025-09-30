@@ -50,6 +50,12 @@ const translations = {
     'turned_off': 'выключено',
     'command_sent': 'Команда отправлена на устройство',
     
+    // Digital inputs
+    'digital_inputs': 'Цифровые входы',
+    'digital_input': 'Вход',
+    'active': 'Активен',
+    'inactive': 'Неактивен',
+    
     // Energy monitoring
     'energy_monitoring': 'Энергомониторинг',
     'voltage': 'Напряжение сети',
@@ -119,6 +125,12 @@ const translations = {
     'turned_on': 'turned on',
     'turned_off': 'turned off',
     'command_sent': 'Command sent to device',
+    
+    // Digital inputs
+    'digital_inputs': 'Digital Inputs',
+    'digital_input': 'Input',
+    'active': 'Active',
+    'inactive': 'Inactive',
     
     // Energy monitoring
     'energy_monitoring': 'Energy Monitoring',
