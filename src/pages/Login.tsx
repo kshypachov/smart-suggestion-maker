@@ -10,7 +10,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
 import { Lock, User, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
-import AnimatedGeometricBackground from "@/components/AnimatedGeometricBackground";
 
 const Login = () => {
   const { toast } = useToast();
@@ -45,8 +44,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-6 relative">
-      <AnimatedGeometricBackground />
+    <div className="min-h-screen bg-background flex items-center justify-center p-6">
       <div className="w-full max-w-md space-y-6 animate-fade-in">
         {/* Header Card */}
         <Card className="animate-scale-in">
