@@ -4,7 +4,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip } from "recharts";
 import { ChevronDown, ChevronUp, Zap, Activity, TrendingUp, Power, RotateCcw, BatteryCharging } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
-import { ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 interface EnergyData {
   voltage: number;
@@ -195,15 +194,17 @@ const EnergyMonitor = () => {
                       tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
                       width={50}
                     />
-                    <ChartTooltip
-                      content={
-                        <ChartTooltipContent
-                          className="bg-background border border-border shadow-lg"
-                          labelFormatter={(value) => `${t('time')}: ${value}`}
-                        />
-                      }
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: "hsl(var(--background))",
+                        border: "1px solid hsl(var(--border))",
+                        borderRadius: "6px"
+                      }}
+                      labelStyle={{ color: "hsl(var(--foreground))" }}
+                      itemStyle={{ color: "hsl(var(--foreground))" }}
+                      labelFormatter={(value) => `${t('time')}: ${value}`}
                     />
-                    <Bar 
+                    <Bar
                       dataKey="value" 
                       fill={openParam.color}
                       radius={[2, 2, 0, 0]}
