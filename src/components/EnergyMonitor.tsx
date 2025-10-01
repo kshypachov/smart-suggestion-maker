@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip } from "recharts";
 import { ChevronDown, ChevronUp, Zap, Activity, TrendingUp, Power, RotateCcw, BatteryCharging } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
+import { ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 interface EnergyData {
   voltage: number;
@@ -193,6 +194,14 @@ const EnergyMonitor = () => {
                     <YAxis 
                       tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
                       width={50}
+                    />
+                    <ChartTooltip
+                      content={
+                        <ChartTooltipContent
+                          className="bg-background border border-border shadow-lg"
+                          labelFormatter={(value) => `${t('time')}: ${value}`}
+                        />
+                      }
                     />
                     <Bar 
                       dataKey="value" 
