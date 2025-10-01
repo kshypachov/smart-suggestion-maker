@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import RelayCard from "@/components/RelayCard";
 import DigitalInputCard from "@/components/DigitalInputCard";
 import EnergyMonitor from "@/components/EnergyMonitor";
-import { Settings, Wifi, WifiOff, LogOut, Languages } from "lucide-react";
+import { Settings, Wifi, WifiOff, LogOut, Languages, FileText } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -79,6 +79,12 @@ const Index = () => {
               <Languages className="h-4 w-4" />
               {language.toUpperCase()}
             </Button>
+            <Link to="/logs">
+              <Button variant="outline" size="lg" className="gap-2">
+                <FileText className="h-4 w-4" />
+                {t('device_logs')}
+              </Button>
+            </Link>
             <Link to="/settings">
               <Button variant="outline" size="lg" className="gap-2">
                 <Settings className="h-4 w-4" />

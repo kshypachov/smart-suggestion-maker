@@ -102,7 +102,35 @@ const translations = {
     'login_username_required': 'Логин обязателен',
     'login_username_max': 'Логин не может быть длиннее 50 символов',
     'login_password_min': 'Пароль должен содержать минимум 4 символа',
-    'login_password_max': 'Пароль слишком длинный'
+    'login_password_max': 'Пароль слишком длинный',
+    
+    // Logs page
+    'device_logs': 'Логи устройства',
+    'view_system_logs': 'Просмотр системных логов',
+    'total_logs': 'Всего логов',
+    'log_entries': 'Записи логов',
+    'timestamp': 'Время',
+    'level': 'Уровень',
+    'source': 'Источник',
+    'message': 'Сообщение',
+    'info': 'Информация',
+    'warnings': 'Предупреждения',
+    'errors': 'Ошибки',
+    'filters': 'Фильтры',
+    'search_logs': 'Поиск в логах...',
+    'all': 'Все',
+    'export': 'Экспорт',
+    'clear_logs': 'Очистить логи',
+    'system_started': 'Система запущена',
+    'mqtt_connected_broker': 'Подключено к MQTT брокеру',
+    'relay_high_temperature': 'Высокая температура реле',
+    'input_state_changed': 'Изменилось состояние входа',
+    'voltage_out_of_range': 'Напряжение вне допустимого диапазона',
+    'relay_turned_on': 'Реле включено',
+    'relay_turned_off': 'Реле выключено',
+    'high_memory_usage': 'Высокая загрузка памяти',
+    'error': 'Ошибка',
+    'warning': 'Предупреждение'
   },
   en: {
     // Header
@@ -197,7 +225,35 @@ const translations = {
     'login_username_required': 'Username is required',
     'login_username_max': 'Username cannot be longer than 50 characters',
     'login_password_min': 'Password must contain at least 4 characters',
-    'login_password_max': 'Password is too long'
+    'login_password_max': 'Password is too long',
+    
+    // Logs page
+    'device_logs': 'Device Logs',
+    'view_system_logs': 'View system logs',
+    'total_logs': 'Total Logs',
+    'log_entries': 'Log Entries',
+    'timestamp': 'Timestamp',
+    'level': 'Level',
+    'source': 'Source',
+    'message': 'Message',
+    'info': 'Info',
+    'warnings': 'Warnings',
+    'errors': 'Errors',
+    'filters': 'Filters',
+    'search_logs': 'Search logs...',
+    'all': 'All',
+    'export': 'Export',
+    'clear_logs': 'Clear Logs',
+    'system_started': 'System started',
+    'mqtt_connected_broker': 'Connected to MQTT broker',
+    'relay_high_temperature': 'Relay high temperature',
+    'input_state_changed': 'Input state changed',
+    'voltage_out_of_range': 'Voltage out of range',
+    'relay_turned_on': 'Relay turned on',
+    'relay_turned_off': 'Relay turned off',
+    'high_memory_usage': 'High memory usage',
+    'error': 'Error',
+    'warning': 'Warning'
   }
 };
 
