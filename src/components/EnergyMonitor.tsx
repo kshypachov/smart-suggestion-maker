@@ -142,6 +142,7 @@ const EnergyMonitor = () => {
               <div className="absolute inset-0 opacity-10 pointer-events-none">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={param.data}>
+                    <XAxis dataKey="time" hide />
                     <YAxis domain={getScaleDomain(param.data)} hide />
                     <Bar dataKey="value" fill={param.color} />
                   </BarChart>
