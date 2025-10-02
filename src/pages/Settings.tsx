@@ -5,12 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Power } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const mqttSchema = z.object({
@@ -72,6 +73,15 @@ const Settings = () => {
     toast({
       title: t('safety_settings_saved'),
       description: t('safety_settings_updated'),
+    });
+  };
+
+  const handleReboot = () => {
+    console.log("Rebooting device...");
+    toast({
+      title: t('device_rebooting'),
+      description: t('device_reboot_initiated'),
+      variant: "default",
     });
   };
 
@@ -336,6 +346,47 @@ const Settings = () => {
                   </Button>
                 </form>
               </Form>
+            </CardContent>
+          </Card>
+
+          {/* System Actions */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-destructive"></div>
+                {t('system_actions')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>{t('device_reboot')}</Label>
+                <p className="text-sm text-muted-foreground">
+                  {t('device_reboot_description')}
+                </p>
+              </div>
+              
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="destructive" className="w-full">
+                    <Power className="h-4 w-4 mr-2" />
+                    {t('reboot_device')}
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>{t('confirm_reboot')}</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      {t('reboot_confirmation_message')}
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleReboot}>
+                      {t('confirm')}
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </CardContent>
           </Card>
         </div>

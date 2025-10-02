@@ -34,6 +34,16 @@ const translations = {
     'mqtt_settings_updated': 'Настройки подключения к MQTT серверу обновлены',
     'safety_settings_saved': 'Настройки безопасности сохранены',
     'safety_settings_updated': 'Безопасные состояния реле обновлены',
+    'system_actions': 'Системные действия',
+    'device_reboot': 'Перезагрузка устройства',
+    'device_reboot_description': 'Выполнить полную перезагрузку embedded устройства',
+    'reboot_device': 'Перезагрузить устройство',
+    'confirm_reboot': 'Подтвердите перезагрузку',
+    'reboot_confirmation_message': 'Вы уверены, что хотите перезагрузить устройство? Это может занять несколько минут.',
+    'cancel': 'Отмена',
+    'confirm': 'Подтвердить',
+    'device_rebooting': 'Устройство перезагружается',
+    'device_reboot_initiated': 'Команда перезагрузки отправлена на устройство',
     
     // Status
     'mqtt_connection': 'MQTT Соединение',
@@ -157,6 +167,16 @@ const translations = {
     'mqtt_settings_updated': 'MQTT server connection settings updated',
     'safety_settings_saved': 'Safety Settings Saved',
     'safety_settings_updated': 'Safe relay states updated',
+    'system_actions': 'System Actions',
+    'device_reboot': 'Device Reboot',
+    'device_reboot_description': 'Perform a full reboot of the embedded device',
+    'reboot_device': 'Reboot Device',
+    'confirm_reboot': 'Confirm Reboot',
+    'reboot_confirmation_message': 'Are you sure you want to reboot the device? This may take several minutes.',
+    'cancel': 'Cancel',
+    'confirm': 'Confirm',
+    'device_rebooting': 'Device Rebooting',
+    'device_reboot_initiated': 'Reboot command sent to device',
     
     // Status
     'mqtt_connection': 'MQTT Connection',
