@@ -128,9 +128,9 @@ const Settings = () => {
           <h1 className="text-3xl font-bold text-foreground">{t('settings')}</h1>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2 items-start">
+        <div className="columns-1 md:columns-1 lg:columns-2 gap-6 space-y-6">
           {/* MQTT Settings */}
-          <Card>
+          <Card className="break-inside-avoid mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-info"></div>
@@ -274,7 +274,7 @@ const Settings = () => {
           </Card>
 
           {/* Safety Settings */}
-          <Card>
+          <Card className="break-inside-avoid mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-warning"></div>
@@ -381,7 +381,7 @@ const Settings = () => {
           </Card>
 
           {/* Overload Protection */}
-          <Card>
+          <Card className="break-inside-avoid mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-destructive"></div>
@@ -527,7 +527,7 @@ const Settings = () => {
           </Card>
 
           {/* System Actions */}
-          <Card>
+          <Card className="break-inside-avoid mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-destructive"></div>
