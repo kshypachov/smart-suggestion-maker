@@ -128,7 +128,7 @@ const Settings = () => {
           <h1 className="text-3xl font-bold text-foreground">{t('settings')}</h1>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2 items-start">
           {/* MQTT Settings */}
           <Card>
             <CardHeader>
