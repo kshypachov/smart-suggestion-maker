@@ -380,6 +380,47 @@ const Settings = () => {
             </CardContent>
           </Card>
 
+          {/* System Actions */}
+          <Card className="break-inside-avoid mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-destructive"></div>
+                {t('system_actions')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>{t('device_reboot')}</Label>
+                <p className="text-sm text-muted-foreground">
+                  {t('device_reboot_description')}
+                </p>
+              </div>
+              
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="destructive" className="w-full">
+                    <Power className="h-4 w-4 mr-2" />
+                    {t('reboot_device')}
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>{t('confirm_reboot')}</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      {t('reboot_confirmation_message')}
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleReboot}>
+                      {t('confirm')}
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </CardContent>
+          </Card>
+
           {/* Overload Protection */}
           <Card className="break-inside-avoid mb-6">
             <CardHeader>
@@ -523,47 +564,6 @@ const Settings = () => {
                   </Button>
                 </form>
               </Form>
-            </CardContent>
-          </Card>
-
-          {/* System Actions */}
-          <Card className="break-inside-avoid mb-6">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-destructive"></div>
-                {t('system_actions')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label>{t('device_reboot')}</Label>
-                <p className="text-sm text-muted-foreground">
-                  {t('device_reboot_description')}
-                </p>
-              </div>
-              
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="destructive" className="w-full">
-                    <Power className="h-4 w-4 mr-2" />
-                    {t('reboot_device')}
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>{t('confirm_reboot')}</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      {t('reboot_confirmation_message')}
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleReboot}>
-                      {t('confirm')}
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
             </CardContent>
           </Card>
         </div>
