@@ -8,124 +8,124 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* 70s-80s America Retro Theme - Warm & Vibrant */
-    --background: 35 45% 92%;
-    --foreground: 25 60% 15%;
+    /* 70s-80s Disco Era - Bold & Vibrant */
+    --background: 45 25% 96%;
+    --foreground: 240 10% 10%;
 
-    --card: 35 55% 88%;
-    --card-foreground: 25 60% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
 
-    --popover: 35 50% 90%;
-    --popover-foreground: 25 60% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
 
-    /* Burnt Orange - Classic 70s */
-    --primary: 25 85% 55%;
-    --primary-foreground: 35 50% 98%;
+    /* Electric Orange - Bold 70s */
+    --primary: 20 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Avocado Green */
-    --secondary: 65 45% 45%;
-    --secondary-foreground: 35 50% 98%;
+    /* Teal/Turquoise */
+    --secondary: 180 65% 45%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 40 30% 80%;
-    --muted-foreground: 25 40% 35%;
+    --muted: 45 20% 90%;
+    --muted-foreground: 240 5% 40%;
 
-    /* Mustard Yellow */
-    --accent: 45 75% 55%;
-    --accent-foreground: 25 60% 15%;
+    /* Sunset Yellow */
+    --accent: 40 95% 55%;
+    --accent-foreground: 240 10% 10%;
 
-    /* Terracotta Red */
-    --destructive: 15 70% 50%;
-    --destructive-foreground: 35 50% 98%;
+    /* Hot Pink */
+    --destructive: 340 85% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 35 30% 75%;
-    --input: 35 40% 85%;
-    --ring: 25 85% 55%;
+    --border: 240 10% 85%;
+    --input: 240 10% 95%;
+    --ring: 20 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Chocolate Brown Sidebar */
-    --sidebar-background: 30 50% 25%;
-    --sidebar-foreground: 35 50% 95%;
-    --sidebar-primary: 25 85% 55%;
-    --sidebar-primary-foreground: 35 50% 98%;
-    --sidebar-accent: 30 45% 35%;
-    --sidebar-accent-foreground: 35 50% 95%;
-    --sidebar-border: 30 40% 20%;
-    --sidebar-ring: 25 85% 55%;
+    /* Deep Purple Sidebar */
+    --sidebar-background: 260 40% 20%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 20 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 260 35% 30%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 260 30% 15%;
+    --sidebar-ring: 20 100% 50%;
 
-    /* Retro Status Colors */
-    --success: 120 60% 45%;
-    --success-foreground: 120 100% 98%;
-    --warning: 45 75% 55%;
-    --warning-foreground: 25 60% 15%;
-    --info: 200 70% 50%;
-    --info-foreground: 200 100% 98%;
+    /* Vibrant Status Colors */
+    --success: 140 70% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 40 95% 55%;
+    --warning-foreground: 240 10% 10%;
+    --info: 200 80% 50%;
+    --info-foreground: 0 0% 100%;
 
-    /* Chart colors - 70s palette */
-    --chart-1: 25 85% 55%;
-    --chart-2: 65 45% 45%;
-    --chart-3: 45 75% 55%;
-    --chart-4: 15 70% 50%;
-    --chart-5: 200 70% 50%;
+    /* Chart colors - disco palette */
+    --chart-1: 20 100% 50%;
+    --chart-2: 180 65% 45%;
+    --chart-3: 40 95% 55%;
+    --chart-4: 340 85% 55%;
+    --chart-5: 260 70% 55%;
   }
 
   .dark {
-    /* Dark mode with 70s-80s vibe */
-    --background: 30 35% 12%;
-    --foreground: 35 50% 95%;
+    /* Dark mode disco era */
+    --background: 240 15% 8%;
+    --foreground: 0 0% 95%;
 
-    --card: 30 40% 15%;
-    --card-foreground: 35 50% 95%;
+    --card: 240 10% 12%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 30 40% 15%;
-    --popover-foreground: 35 50% 95%;
+    --popover: 240 10% 12%;
+    --popover-foreground: 0 0% 95%;
 
-    /* Bright Orange for dark mode */
-    --primary: 25 90% 60%;
-    --primary-foreground: 30 35% 12%;
+    /* Neon Orange */
+    --primary: 20 100% 55%;
+    --primary-foreground: 240 15% 8%;
 
-    /* Olive Green for dark */
-    --secondary: 65 40% 35%;
-    --secondary-foreground: 35 50% 95%;
+    /* Cyan */
+    --secondary: 180 70% 50%;
+    --secondary-foreground: 240 15% 8%;
 
-    --muted: 30 30% 22%;
-    --muted-foreground: 35 25% 65%;
+    --muted: 240 10% 18%;
+    --muted-foreground: 240 5% 60%;
 
-    /* Golden Yellow */
-    --accent: 45 80% 60%;
-    --accent-foreground: 30 35% 12%;
+    /* Bright Yellow */
+    --accent: 50 100% 60%;
+    --accent-foreground: 240 15% 8%;
 
-    /* Deep Red */
-    --destructive: 15 75% 45%;
-    --destructive-foreground: 35 50% 95%;
+    /* Neon Pink */
+    --destructive: 340 90% 60%;
+    --destructive-foreground: 0 0% 95%;
 
-    --border: 30 30% 25%;
-    --input: 30 35% 20%;
-    --ring: 25 90% 60%;
+    --border: 240 10% 20%;
+    --input: 240 10% 15%;
+    --ring: 20 100% 55%;
 
-    --sidebar-background: 30 45% 10%;
-    --sidebar-foreground: 35 50% 95%;
-    --sidebar-primary: 25 90% 60%;
-    --sidebar-primary-foreground: 30 35% 12%;
-    --sidebar-accent: 30 40% 18%;
-    --sidebar-accent-foreground: 35 50% 95%;
-    --sidebar-border: 30 35% 15%;
-    --sidebar-ring: 25 90% 60%;
+    --sidebar-background: 260 45% 12%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 20 100% 55%;
+    --sidebar-primary-foreground: 240 15% 8%;
+    --sidebar-accent: 260 40% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 260 35% 10%;
+    --sidebar-ring: 20 100% 55%;
 
-    /* Dark mode status colors */
-    --success: 120 55% 50%;
-    --success-foreground: 120 100% 98%;
-    --warning: 45 80% 60%;
-    --warning-foreground: 30 35% 12%;
-    --info: 200 65% 55%;
-    --info-foreground: 200 100% 98%;
+    /* Dark mode vibrant colors */
+    --success: 140 75% 50%;
+    --success-foreground: 0 0% 95%;
+    --warning: 50 100% 60%;
+    --warning-foreground: 240 15% 8%;
+    --info: 200 85% 55%;
+    --info-foreground: 0 0% 95%;
 
-    /* Chart colors - dark mode */
-    --chart-1: 25 90% 60%;
-    --chart-2: 65 40% 50%;
-    --chart-3: 45 80% 60%;
-    --chart-4: 15 75% 55%;
-    --chart-5: 200 65% 55%;
+    /* Chart colors - neon */
+    --chart-1: 20 100% 55%;
+    --chart-2: 180 70% 50%;
+    --chart-3: 50 100% 60%;
+    --chart-4: 340 90% 60%;
+    --chart-5: 280 80% 60%;
   }
 }
 
