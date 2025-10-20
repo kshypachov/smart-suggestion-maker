@@ -8,124 +8,118 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Miami Vice 80s - Pastel Dreams */
-    --background: 300 40% 97%;
-    --foreground: 220 25% 20%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-    --card: 280 35% 95%;
-    --card-foreground: 220 25% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 280 35% 95%;
-    --popover-foreground: 220 25% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    /* Hot Pink */
-    --primary: 330 80% 65%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
 
-    /* Mint Green */
-    --secondary: 160 50% 65%;
-    --secondary-foreground: 220 25% 20%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 280 20% 88%;
-    --muted-foreground: 220 15% 45%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Peach */
-    --accent: 20 85% 75%;
-    --accent-foreground: 220 25% 20%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
-    /* Coral */
-    --destructive: 10 75% 65%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 280 25% 85%;
-    --input: 280 30% 92%;
-    --ring: 330 80% 65%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
 
-    --radius: 1.25rem;
+    --radius: 0.5rem;
 
-    /* Lavender Sidebar */
-    --sidebar-background: 260 45% 75%;
-    --sidebar-foreground: 220 25% 20%;
-    --sidebar-primary: 330 80% 65%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 260 35% 85%;
-    --sidebar-accent-foreground: 220 25% 20%;
-    --sidebar-border: 260 30% 70%;
-    --sidebar-ring: 330 80% 65%;
+    --sidebar-background: 0 0% 98%;
 
-    /* Pastel Status Colors */
-    --success: 150 55% 60%;
-    --success-foreground: 0 0% 100%;
-    --warning: 40 80% 70%;
-    --warning-foreground: 220 25% 20%;
-    --info: 200 60% 70%;
-    --info-foreground: 0 0% 100%;
+    --sidebar-foreground: 240 5.3% 26.1%;
 
-    /* Chart colors - pastel palette */
-    --chart-1: 330 80% 65%;
-    --chart-2: 160 50% 65%;
-    --chart-3: 20 85% 75%;
-    --chart-4: 260 60% 70%;
-    --chart-5: 200 60% 70%;
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --success: 142.1 76.2% 36.3%;
+    --success-foreground: 355.7 100% 97.3%;
+    --warning: 47.9 95.8% 53.1%;
+    --warning-foreground: 26 83.3% 14.1%;
+    --info: 221.2 83.2% 53.3%;
+    --info-foreground: 210 40% 98%;
+
+    /* Chart colors */
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 270 60% 50%;
+    --chart-5: 340 75% 55%;
   }
 
   .dark {
-    /* Dark Miami Vice - Neon Nights */
-    --background: 260 30% 12%;
-    --foreground: 280 20% 95%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 260 25% 16%;
-    --card-foreground: 280 20% 95%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 260 25% 16%;
-    --popover-foreground: 280 20% 95%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    /* Neon Pink */
-    --primary: 330 85% 60%;
-    --primary-foreground: 260 30% 12%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    /* Electric Mint */
-    --secondary: 160 60% 55%;
-    --secondary-foreground: 260 30% 12%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 260 20% 22%;
-    --muted-foreground: 280 10% 65%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    /* Neon Peach */
-    --accent: 20 90% 65%;
-    --accent-foreground: 260 30% 12%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
 
-    /* Hot Coral */
-    --destructive: 10 80% 60%;
-    --destructive-foreground: 280 20% 95%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 260 20% 25%;
-    --input: 260 25% 18%;
-    --ring: 330 85% 60%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
 
-    --sidebar-background: 260 35% 15%;
-    --sidebar-foreground: 280 20% 95%;
-    --sidebar-primary: 330 85% 60%;
-    --sidebar-primary-foreground: 260 30% 12%;
-    --sidebar-accent: 260 30% 22%;
-    --sidebar-accent-foreground: 280 20% 95%;
-    --sidebar-border: 260 25% 12%;
-    --sidebar-ring: 330 85% 60%;
+    /* Device status colors - dark mode */
+    --success: 142.1 70.6% 45.3%;
+    --success-foreground: 144.9 80.4% 10%;
+    --warning: 47.9 95.8% 53.1%;
+    --warning-foreground: 26 83.3% 14.1%;
+    --info: 221.2 83.2% 53.3%;
+    --info-foreground: 210 40% 98%;
 
-    /* Dark mode neon colors */
-    --success: 150 65% 55%;
-    --success-foreground: 260 30% 12%;
-    --warning: 40 90% 65%;
-    --warning-foreground: 260 30% 12%;
-    --info: 200 70% 60%;
-    --info-foreground: 260 30% 12%;
-
-    /* Chart colors - neon */
-    --chart-1: 330 85% 60%;
+    /* Chart colors - dark mode */
+    --chart-1: 220 70% 60%;
     --chart-2: 160 60% 55%;
-    --chart-3: 20 90% 65%;
-    --chart-4: 260 70% 65%;
-    --chart-5: 200 70% 60%;
+    --chart-3: 30 80% 65%;
+    --chart-4: 270 60% 60%;
+    --chart-5: 340 75% 65%;
   }
 }
 
