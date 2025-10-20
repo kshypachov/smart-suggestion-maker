@@ -8,124 +8,124 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* 70s-80s Disco Era - Bold & Vibrant */
-    --background: 45 25% 96%;
-    --foreground: 240 10% 10%;
+    /* Miami Vice 80s - Pastel Dreams */
+    --background: 300 40% 97%;
+    --foreground: 220 25% 20%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
+    --card: 280 35% 95%;
+    --card-foreground: 220 25% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
-
-    /* Electric Orange - Bold 70s */
-    --primary: 20 100% 50%;
-    --primary-foreground: 0 0% 100%;
-
-    /* Teal/Turquoise */
-    --secondary: 180 65% 45%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 45 20% 90%;
-    --muted-foreground: 240 5% 40%;
-
-    /* Sunset Yellow */
-    --accent: 40 95% 55%;
-    --accent-foreground: 240 10% 10%;
+    --popover: 280 35% 95%;
+    --popover-foreground: 220 25% 20%;
 
     /* Hot Pink */
-    --destructive: 340 85% 55%;
+    --primary: 330 80% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Mint Green */
+    --secondary: 160 50% 65%;
+    --secondary-foreground: 220 25% 20%;
+
+    --muted: 280 20% 88%;
+    --muted-foreground: 220 15% 45%;
+
+    /* Peach */
+    --accent: 20 85% 75%;
+    --accent-foreground: 220 25% 20%;
+
+    /* Coral */
+    --destructive: 10 75% 65%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 10% 85%;
-    --input: 240 10% 95%;
-    --ring: 20 100% 50%;
+    --border: 280 25% 85%;
+    --input: 280 30% 92%;
+    --ring: 330 80% 65%;
 
-    --radius: 1rem;
+    --radius: 1.25rem;
 
-    /* Deep Purple Sidebar */
-    --sidebar-background: 260 40% 20%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 20 100% 50%;
+    /* Lavender Sidebar */
+    --sidebar-background: 260 45% 75%;
+    --sidebar-foreground: 220 25% 20%;
+    --sidebar-primary: 330 80% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 260 35% 30%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 260 30% 15%;
-    --sidebar-ring: 20 100% 50%;
+    --sidebar-accent: 260 35% 85%;
+    --sidebar-accent-foreground: 220 25% 20%;
+    --sidebar-border: 260 30% 70%;
+    --sidebar-ring: 330 80% 65%;
 
-    /* Vibrant Status Colors */
-    --success: 140 70% 45%;
+    /* Pastel Status Colors */
+    --success: 150 55% 60%;
     --success-foreground: 0 0% 100%;
-    --warning: 40 95% 55%;
-    --warning-foreground: 240 10% 10%;
-    --info: 200 80% 50%;
+    --warning: 40 80% 70%;
+    --warning-foreground: 220 25% 20%;
+    --info: 200 60% 70%;
     --info-foreground: 0 0% 100%;
 
-    /* Chart colors - disco palette */
-    --chart-1: 20 100% 50%;
-    --chart-2: 180 65% 45%;
-    --chart-3: 40 95% 55%;
-    --chart-4: 340 85% 55%;
-    --chart-5: 260 70% 55%;
+    /* Chart colors - pastel palette */
+    --chart-1: 330 80% 65%;
+    --chart-2: 160 50% 65%;
+    --chart-3: 20 85% 75%;
+    --chart-4: 260 60% 70%;
+    --chart-5: 200 60% 70%;
   }
 
   .dark {
-    /* Dark mode disco era */
-    --background: 240 15% 8%;
-    --foreground: 0 0% 95%;
+    /* Dark Miami Vice - Neon Nights */
+    --background: 260 30% 12%;
+    --foreground: 280 20% 95%;
 
-    --card: 240 10% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 260 25% 16%;
+    --card-foreground: 280 20% 95%;
 
-    --popover: 240 10% 12%;
-    --popover-foreground: 0 0% 95%;
-
-    /* Neon Orange */
-    --primary: 20 100% 55%;
-    --primary-foreground: 240 15% 8%;
-
-    /* Cyan */
-    --secondary: 180 70% 50%;
-    --secondary-foreground: 240 15% 8%;
-
-    --muted: 240 10% 18%;
-    --muted-foreground: 240 5% 60%;
-
-    /* Bright Yellow */
-    --accent: 50 100% 60%;
-    --accent-foreground: 240 15% 8%;
+    --popover: 260 25% 16%;
+    --popover-foreground: 280 20% 95%;
 
     /* Neon Pink */
-    --destructive: 340 90% 60%;
-    --destructive-foreground: 0 0% 95%;
+    --primary: 330 85% 60%;
+    --primary-foreground: 260 30% 12%;
 
-    --border: 240 10% 20%;
-    --input: 240 10% 15%;
-    --ring: 20 100% 55%;
+    /* Electric Mint */
+    --secondary: 160 60% 55%;
+    --secondary-foreground: 260 30% 12%;
 
-    --sidebar-background: 260 45% 12%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 20 100% 55%;
-    --sidebar-primary-foreground: 240 15% 8%;
-    --sidebar-accent: 260 40% 18%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 260 35% 10%;
-    --sidebar-ring: 20 100% 55%;
+    --muted: 260 20% 22%;
+    --muted-foreground: 280 10% 65%;
 
-    /* Dark mode vibrant colors */
-    --success: 140 75% 50%;
-    --success-foreground: 0 0% 95%;
-    --warning: 50 100% 60%;
-    --warning-foreground: 240 15% 8%;
-    --info: 200 85% 55%;
-    --info-foreground: 0 0% 95%;
+    /* Neon Peach */
+    --accent: 20 90% 65%;
+    --accent-foreground: 260 30% 12%;
+
+    /* Hot Coral */
+    --destructive: 10 80% 60%;
+    --destructive-foreground: 280 20% 95%;
+
+    --border: 260 20% 25%;
+    --input: 260 25% 18%;
+    --ring: 330 85% 60%;
+
+    --sidebar-background: 260 35% 15%;
+    --sidebar-foreground: 280 20% 95%;
+    --sidebar-primary: 330 85% 60%;
+    --sidebar-primary-foreground: 260 30% 12%;
+    --sidebar-accent: 260 30% 22%;
+    --sidebar-accent-foreground: 280 20% 95%;
+    --sidebar-border: 260 25% 12%;
+    --sidebar-ring: 330 85% 60%;
+
+    /* Dark mode neon colors */
+    --success: 150 65% 55%;
+    --success-foreground: 260 30% 12%;
+    --warning: 40 90% 65%;
+    --warning-foreground: 260 30% 12%;
+    --info: 200 70% 60%;
+    --info-foreground: 260 30% 12%;
 
     /* Chart colors - neon */
-    --chart-1: 20 100% 55%;
-    --chart-2: 180 70% 50%;
-    --chart-3: 50 100% 60%;
-    --chart-4: 340 90% 60%;
-    --chart-5: 280 80% 60%;
+    --chart-1: 330 85% 60%;
+    --chart-2: 160 60% 55%;
+    --chart-3: 20 90% 65%;
+    --chart-4: 260 70% 65%;
+    --chart-5: 200 70% 60%;
   }
 }
 
